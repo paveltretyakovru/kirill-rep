@@ -1,23 +1,27 @@
-var express = require('express');
-var app = express();
-var io = require('socket.io')(app);
+const express = require('express');
+const app = express();
+const io = require('socket.io')(app);
+const http = require('http').Server(app);
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
-
 io.on('connection', function (socket) {
+  console.log('User connected');
+
+  socket.on('disconnect', function () {
+    io.emit('user disconnected');
+  });
+
   socket.emit('news', { hello: 'world' });
 
   socket.on('my other event', function (data) {
     console.log(data);
   });
 
-  socket.on('disconnect', function () {
-    io.emit('user disconnected');
-  });
+});
+
+http.listen(5000, () => {
+  console.log('started on port 5000');
 });
