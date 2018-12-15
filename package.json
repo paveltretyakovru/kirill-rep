@@ -48,6 +48,7 @@
         "@types/jasmine": "~2.8.6",
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "~8.9.4",
+        "@types/socket.io-client": "^1.4.32",
         "@types/websocket": "0.0.39",
         "codelyzer": "~4.2.1",
         "jasmine-core": "~2.99.1",
