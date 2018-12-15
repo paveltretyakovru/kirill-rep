@@ -18,7 +18,8 @@
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "server": "node server"
+        "server": "node server",
+        "server:express": "node server.js"
     },
     "private": true,
     "dependencies": {
