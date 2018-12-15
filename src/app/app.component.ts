@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WebsocketService } from './websocket';
 import {map} from 'rxjs/operators';
+import { NewsService } from './shared/services/news.service';
 
 @Component({
     selector: 'app-root',
@@ -8,22 +9,18 @@ import {map} from 'rxjs/operators';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    public vehicles = [];
-    public eventList = [];
-    constructor(private wsService: WebsocketService) {
+
+    constructor(private newsService: NewsService) {
     }
 
     ngOnInit() {
-        const self = this;
-        const updateCars = function (data) {
-            const i = self.vehicles.findIndex((item) => item.vehicleId === data.vehicleId);
-            (i < 0) ? self.vehicles.push(data) : self.vehicles[i] = data;
-        };
-        const updateEventList = function (data) { self.eventList.push(data); };
+        this.newsService.news.subscribe((nws) => {
+            console.log(nws);
+        });
+    }
 
-        this.wsService.on('vehicleLocation').pipe( map( updateCars ) ).subscribe();
-        this.wsService.on('event').pipe( map( updateEventList ) ).subscribe();
-
+    sendNews(): void {
+        this.newsService.sendNws('HELLO MY NEW!');
     }
 
 }

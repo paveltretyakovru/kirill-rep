@@ -2,7 +2,7 @@
     <h1>Angular WebSocket Starter Demo</h1>
 
     <div class="row">
-        <div class="messages">
+        <!-- <div class="messages">
             <ul>
                 <li *ngFor="let car of vehicles" style="border: 1px solid #000">
                     <strong>{{ car.vehicleId }}</strong><br>
@@ -14,12 +14,14 @@
                     lon: {{ car.spaceTime.loc.lon }}
                 </li>
             </ul>
-        </div>
+        </div> -->
+
+        <button (click)="sendNews()">Send message, loock to the console</button>
 
     </div>
-    <div>
+    <!-- <div>
         <div *ngFor="let event of eventList"><span>{{ event.eventType }}</span></div>
-    </div>
+    </div> -->
 
 
 </div>

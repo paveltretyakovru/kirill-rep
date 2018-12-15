@@ -3,6 +3,10 @@ import * as io from 'socket.io-client';
 import { Observable } from 'rxjs';
 import * as Rx from 'rxjs';
 
+interface NewsEvent {
+    text: string;
+}
+
 const WS_URL = 'http://localhost:5000';
 
 @Injectable({
@@ -14,12 +18,12 @@ export class SocketService {
 
   constructor() { }
 
-  connect(): Rx.Subject<MessageEvent> {
+  connect(): Rx.Subject<any> {
     this.socket = io(WS_URL);
 
     const observable = new Observable((observ) => {
-      this.socket.on('message', (data) => {
-        console.log('Received message from Websocket Server');
+      this.socket.on('news', (data) => {
+        console.log('Received news from Websocket Server');
         observ.next(data);
       });
       return () => {
@@ -29,7 +33,7 @@ export class SocketService {
 
     const observer = {
       next: (data: Object) => {
-        this.socket.emit('message', JSON.stringify(data));
+        this.socket.emit('news', JSON.stringify(data));
       },
     };
 
