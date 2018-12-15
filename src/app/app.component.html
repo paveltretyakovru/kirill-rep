@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>Angular WebSocket Starter Demo</h1>
+
+    <div class="row">
+        <div class="messages">
+            <ul>
+                <li *ngFor="let car of vehicles" style="border: 1px solid #000">
+                    <strong>{{ car.vehicleId }}</strong><br>
+                    <strong> spaceTime:</strong><br>
+                    lat: {{ car.spaceTime.lat }},
+                    lon: {{ car.spaceTime.lon }}<br>
+                    <strong> spaceTime.loc:</strong><br>
+                    lat: {{ car.spaceTime.loc.lat }},
+                    lon: {{ car.spaceTime.loc.lon }}
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div>
+        <div *ngFor="let event of eventList"><span>{{ event.eventType }}</span></div>
+    </div>
+
+
+</div>
